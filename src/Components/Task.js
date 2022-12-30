@@ -11,10 +11,13 @@ import SmallLoader from '../Components/SmallLoader';
 import { AuthContext } from '../contexts/UserContext';
 import { queryClient } from '../index';
 
-export default function Task({ task }) {
+
+import React from 'react'
+
+const Task = ({task}) => {
   const [opened, setOpened] = useState(false);
   const { title, description, createdAt, _id, completed } = task;
-  const { register, handleSubmit } = useForm();
+  const { register } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useContext(AuthContext);
 
@@ -76,8 +79,9 @@ export default function Task({ task }) {
         console.log(err);
       });
   };
+
   return (
-    <div className="border p-2">
+    <div className="border border-black p-2">
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-[22px] font-semibold">{title}</h2>
         <p>{new Date(createdAt).toLocaleString()}</p>
@@ -97,7 +101,7 @@ export default function Task({ task }) {
           "
             onClick={() => setOpened(true)}
           >
-            <BsPencilFill />
+            Edit
           </button>
         </Tooltip>
         <Tooltip label="Delete Task">
@@ -105,7 +109,7 @@ export default function Task({ task }) {
             className="bg-purple-600 text-white items-center py-3  basis-1/3 flex justify-center rounded text-[16px]"
             onClick={() => handleDelete(_id)}
           >
-            <AiTwotoneDelete />
+            Delete
           </button>
         </Tooltip>
         {completed ? (
@@ -114,7 +118,7 @@ export default function Task({ task }) {
               className="bg-purple-600 text-white items-center py-3  basis-1/3 flex justify-center rounded text-[16px]"
               onClick={() => handleUncomplete(_id)}
             >
-              <MdOutlineClose />
+              Uncomplete
             </button>
           </Tooltip>
         ) : (
@@ -123,7 +127,7 @@ export default function Task({ task }) {
               className="bg-purple-600 text-white items-center py-3  basis-1/3 flex justify-center rounded text-[16px]"
               onClick={() => handleComplete(_id)}
             >
-              <GoCheck />
+              Complete
             </button>
           </Tooltip>
         )}
@@ -163,3 +167,5 @@ export default function Task({ task }) {
     </div>
   );
 }
+
+export default Task

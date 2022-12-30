@@ -1,3 +1,4 @@
+import React from 'react'
 import { Divider, Input } from '@mantine/core';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { useContext, useState } from 'react';
@@ -11,7 +12,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SmallLoader from '../Components/SmallLoader';
 import { AuthContext } from '../contexts/UserContext';
 
-export default function Register() {
+
+const Register = () => {
   const {
     register,
     handleSubmit,
@@ -65,6 +67,7 @@ export default function Register() {
         toast.error(error.message.replace('Firebase: ', ''));
       });
   };
+
   return (
     <div className="h-screen flex justify-center items-center container w-[95%] mx-auto">
       <div className="w-full">
@@ -73,7 +76,6 @@ export default function Register() {
           <form onSubmit={handleSubmit(handleRegister)}>
             <Input
               placeholder="Name"
-              icon={<BiUserCircle className="text[16px]g" />}
               type="text"
               {...register('name', { required: 'Name is required' })}
             />
@@ -82,7 +84,6 @@ export default function Register() {
             )}
             <Input
               placeholder="Email"
-              icon={<MdAlternateEmail className="text-[16px]" />}
               type="email"
               className="mt-2"
               {...register('email', { required: 'Email is required' })}
@@ -92,7 +93,7 @@ export default function Register() {
             )}
             <Input
               placeholder="Password"
-              icon={<BsShieldLock className="text-[16px]" />}
+              
               type="password"
               className="mt-2"
               {...register('password', {
@@ -116,14 +117,14 @@ export default function Register() {
               </Link>
             </p>
             <button
-              className={`btn-primary w-full ${isLoading && 'bg-gray-700'}`}
+              className={`bg-indigo-500 py-2 text-white w-full ${isLoading && 'bg-gray-700'}`}
             >
               {isLoading ? <SmallLoader /> : 'Register'}
             </button>
             <Divider my="xs" label="Or" labelPosition="center" />
           </form>
           <button
-            className="btn-primary w-full flex justify-center items-center gap-2"
+            className="bg-indigo-500 py-2 text-white w-full flex justify-center items-center gap-2"
             onClick={handleGoogleSignUp}
           >
             <FcGoogle className={`${googleLoading ? 'hidden' : ''}`} />
@@ -138,3 +139,6 @@ export default function Register() {
     </div>
   );
 }
+
+export default Register
+

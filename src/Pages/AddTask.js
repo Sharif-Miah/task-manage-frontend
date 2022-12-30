@@ -1,14 +1,15 @@
+import React from 'react'
 import { Input, Textarea } from '@mantine/core';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { BsFillImageFill } from 'react-icons/bs';
-import { MdDescription, MdTitle } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import SmallLoader from '../Components/SmallLoader';
 import { AuthContext } from '../contexts/UserContext';
 
-export default function AddTask() {
+
+const AddTask = () => {
+
   const { register, handleSubmit } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useContext(AuthContext);
@@ -128,3 +129,5 @@ export default function AddTask() {
     </section>
   );
 }
+
+export default AddTask

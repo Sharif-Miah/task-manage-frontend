@@ -1,9 +1,11 @@
+import React from 'react'
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Loader from '../Components/Loader';
 import Task from '../Components/Task';
 
-export default function CompletedTasks() {
+
+const CompletedTasks = () => {
   const { isLoading, data: tasks } = useQuery(['completed-tasks'], async () => {
     const data = await axios('https://task-backend-task.vercel.app/completed-tasks');
     return data.data;
@@ -12,7 +14,6 @@ export default function CompletedTasks() {
   if (isLoading) {
     return <Loader />;
   }
-
   return (
     <section
       id="my-tasks"
@@ -29,3 +30,5 @@ export default function CompletedTasks() {
     </section>
   );
 }
+
+export default CompletedTasks

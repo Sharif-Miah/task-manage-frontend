@@ -1,14 +1,15 @@
+import React from 'react'
 import { Tooltip } from '@mantine/core';
 import { useContext, useState } from 'react';
-import { FiLogIn, FiLogOut, FiMenu, FiX } from 'react-icons/fi';
+import { FiLogIn, FiMenu, FiX } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/UserContext';
 
-export default function Header() {
+
+
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const { user, logout } = useContext(AuthContext);
-
   return (
     <header className="bg-black text-slate-400 top-0 z-50">
       <nav className=" transition-all duration-500">
@@ -24,8 +25,8 @@ export default function Header() {
           <ul
             className={`hidden md:flex gap-5 items-center transition-all duration-300`}
           >
-            <Link to="/add-task">Add Task</Link>
             <Link to="/my-tasks">My Tasks</Link>
+            <Link to="/add-task">Add Task</Link>
             <Link to="/completed-tasks">Completed Tasks</Link>
             {!user ? (
               <>
@@ -67,11 +68,15 @@ export default function Header() {
             !isOpen ? 'opacity-0 -left-full' : 'opacity-100 left-0'
           }`}
         >
-          <Link to="/add-task">Add Task</Link>
           <Link to="/my-tasks">My Tasks</Link>
+          <Link to="/add-task">Add Task</Link>
           <Link to="/completed-tasks">Completed Tasks</Link>
         </ul>
       </nav>
     </header>
   );
 }
+
+export default Header
+
+

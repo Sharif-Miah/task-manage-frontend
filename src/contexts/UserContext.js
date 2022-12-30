@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -14,7 +15,9 @@ import app from '../firebase/firebaseConfig';
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
-export default function UserContext({ children }) {
+
+
+const UserContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userRole, setUserRole] = useState(null);
@@ -82,6 +85,7 @@ export default function UserContext({ children }) {
     userRole,
     setUserRole,
   };
-
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
+
+export default UserContext

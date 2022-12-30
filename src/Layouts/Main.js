@@ -1,8 +1,9 @@
+import React from 'react'
 import { Outlet } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 
-export default function Main() {
+const Main = () => {
   return (
     <div>
       <Header />
@@ -11,3 +12,5 @@ export default function Main() {
     </div>
   );
 }
+
+export default Main

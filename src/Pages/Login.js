@@ -1,3 +1,4 @@
+import React from 'react'
 import { Divider, Input } from '@mantine/core';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { useContext, useState } from 'react';
@@ -10,7 +11,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SmallLoader from '../Components/SmallLoader';
 import { AuthContext } from '../contexts/UserContext';
 
-export default function Login() {
+
+const Login = () => {
   const {
     register,
     handleSubmit,
@@ -67,7 +69,6 @@ export default function Login() {
           <form className="" onSubmit={handleSubmit(handleLogin)}>
             <Input
               placeholder="Email"
-              icon={<MdAlternateEmail />}
               type="email"
               {...register('email', { required: 'Image is required' })}
             />
@@ -76,7 +77,6 @@ export default function Login() {
             )}
             <Input
               placeholder="Password"
-              icon={<BsShieldLock />}
               type="password"
               {...register('password', {
                 required: 'Password is required',
@@ -96,14 +96,14 @@ export default function Login() {
                 Register
               </Link>
             </p>
-            <button className="btn-primary w-full">
+            <button className="bg-indigo-500 w-full py-2 text-white">
               {' '}
               {isLoading ? <SmallLoader /> : 'Login'}
             </button>
             <Divider my="xs" label="Or" labelPosition="center" />
           </form>
           <button
-            className="btn-primary w-full flex justify-center items-center gap-2"
+            className="bg-indigo-500 py-2 text-white w-full flex justify-center items-center gap-2"
             onClick={handleGoogleSignUp}
           >
             <FcGoogle className={`${googleLoading ? 'hidden' : ''}`} />
@@ -118,3 +118,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login
